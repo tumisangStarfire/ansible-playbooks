@@ -1,0 +1,6 @@
+---
+- name: First playbook
+  hosts: localhost
+
+  tasks:
+    - debugger: msg"Welcome to Ansible"
