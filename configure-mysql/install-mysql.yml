@@ -1,0 +1,27 @@
+---
+- name: Setup MySql Create User and Open Port 3306
+  hosts: all
+  become: true
+  vars:
+    mysql_root_password: '1234.qwerty?'
+    mysql_dependencies:
+      - mysql-client
+      - mysql-server
+
+  tasks:
+    - name: install MySql
+      apt:
+        name: mysql 
+        with_items: "{{ mysql_dependencies }}"
+
+    - name: Start Mysql Service
+      service: 
+        name: mysql
+        state: started
+    
+    - name: Create Database
+      community.mysql.mysql_db:
+        name: ecommerce
+        state: present
+
+      
