@@ -1,0 +1,16 @@
+---
+- name: Installing and Running Apache
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: install apache
+      apt:
+        name: apache2
+        state: present
+
+  handlers:
+   - name: restart apache service
+     service:
+       name: apache2
+       state: restarted
