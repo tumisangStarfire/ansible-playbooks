@@ -1,0 +1,13 @@
+---
+- name: Copy files from host to remote clients
+  hosts: all
+
+  tasks:
+    - name: Copying files from remote to clients and assigning permissions
+      become: true
+      copy:
+        src: /home/ubuntu/some.cfg
+        dest: /tmp
+        owner: ubuntu
+        group: ubuntu
+        mode: 0644
